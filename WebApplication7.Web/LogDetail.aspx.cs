@@ -59,10 +59,12 @@ namespace WebApplication7.Web
                 throw;
             }
         }
-
+        /// <summary>
+        ///  添加评论
+        /// </summary>
         public void AddComment()
         {
-            Repeater1.DataSource = new Info_Comments_BLL().GetList("LogID = '" + LogDetailID + "'");
+            Repeater1.DataSource = new V_Comments_User_BLL().GetList("LogID = '" + LogDetailID + "'");
             Repeater1.DataBind();
         }
     }

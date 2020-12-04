@@ -21,7 +21,10 @@ namespace WebApplication7.Web
             LogsID = Request["ID"];
             if (!IsPostBack)
             {
-                FillData();
+                if (!String.IsNullOrEmpty(LogsID))
+                {
+                    FillData();
+                }
             }
 
             try
