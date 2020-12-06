@@ -22,28 +22,46 @@ namespace WebApplication7.Web
             RegisterUser();
         }
 
+        /// <summary>
+        /// 注册用户
+        /// </summary>
         private void RegisterUser()
         {
             String UserName = TextBox1.Text.Trim();
             String UserNum = TextBox2.Text.Trim();
             String pwd = TextBox3.Text.Trim();
+
             if (!String.IsNullOrEmpty(UserName) && !String.IsNullOrEmpty(UserNum) && !String.IsNullOrEmpty(pwd))
             {
-                Info_User_Model infoUserModel = new Info_User_Model();
-                infoUserModel.UserlD = Guid.NewGuid();
-                infoUserModel.UserName = UserName;
-                infoUserModel.UserPhone = Convert.ToInt32(UserNum);
-                infoUserModel.Pwd = pwd;
-                infoUserModel.CreateUser = Guid.NewGuid();
-                infoUserModel.CreateTime = DateTime.Now;
-                infoUserModel.IsDelete = false;
-                new Info_User_BLL().Add(infoUserModel);
-
+                if (IsRepetition(UserNum))
+                {
+                    Info_User_Model infoUserModel = new Info_User_Model();
+                    infoUserModel.UserlD = Guid.NewGuid();
+                    infoUserModel.UserName = UserName;
+                    infoUserModel.UserPhone = Convert.ToInt32(UserNum);
+                    infoUserModel.Pwd = pwd;
+                    infoUserModel.CreateUser = Guid.NewGuid();
+                    infoUserModel.CreateTime = DateTime.Now;
+                    infoUserModel.IsDelete = false;
+                    new Info_User_BLL().Add(infoUserModel);
+                }
+                else
+                {
+                    Response.Write("<script> alert(\"账号不能重复\")</script> ");
+                }
             }
             else
             {
                 Response.Write("<Script>alert(\"不能有空值\")<Script>");
             }
+        }
+
+        /// <summary>
+        /// 判断重复
+        /// </summary>
+        private Boolean IsRepetition(String Mobile)
+        {
+            return new Info_User_BLL().GetModelList("UserPhone = '" + Mobile + "'").Where(x => x.UserPhone == Convert.ToInt32(Mobile)).ToList().Count > 0 == true ? false : true;
         }
     }
 }

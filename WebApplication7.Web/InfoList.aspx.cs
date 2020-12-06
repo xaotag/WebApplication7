@@ -30,11 +30,14 @@ namespace WebApplication7.Web
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("IsDelete = 0");
+            /*
             if (Session["AdminUser"] != null)
             {
                 String admin = Session["AdminUser"].ToString();
                 strSql.Append("and CreateUser = '" + admin.ToString() + "'");
             }
+            */
+           
             DataSet ds = new V_Logs_User_BLL().GetList(strSql.ToString());
             Repeater1.DataSource = ds;
             Repeater1.DataBind();

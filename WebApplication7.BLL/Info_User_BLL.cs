@@ -84,6 +84,14 @@ namespace WebApplication7.BLL
             return dal.GetModel( UserPhone, Pwd);
         }
 
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public Info_User_Model GetModel(int UserPhone)
+        {
+
+            return dal.GetModel(UserPhone);
+        }
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>

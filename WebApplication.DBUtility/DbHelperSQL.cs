@@ -1351,7 +1351,7 @@ namespace WebApplication7.DBUtility
                 }
                 return str;
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return new string[0];
             }

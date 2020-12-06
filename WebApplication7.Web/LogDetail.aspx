@@ -49,7 +49,7 @@
                 <ItemTemplate>
                     <tr>
 
-                        <td class="user"><%# Eval("Commentators") %></td>
+                        <td class="user"><%# Eval("UserName") %></td>
                         <td></td>
                     </tr>
                     <tr>
