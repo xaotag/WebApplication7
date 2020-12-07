@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="AddInfoLog.aspx" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="Home.aspx" />
     <Content Include="img\1.jpg" />
     <Content Include="InfoList.aspx" />
     <Content Include="LogDetail.aspx" />
@@ -83,6 +84,13 @@
     </Compile>
     <Compile Include="AddInfoLog.aspx.designer.cs">
       <DependentUpon>AddInfoLog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
     </Compile>
     <Compile Include="InfoList.aspx.cs">
       <DependentUpon>InfoList.aspx</DependentUpon>
@@ -153,7 +161,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:64650/</IISUrl>
+          <IISUrl>http://localhost:53217/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

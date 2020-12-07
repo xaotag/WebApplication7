@@ -25,7 +25,7 @@
             <a href="./Login.aspx" class="a1"  runat="server">登录</a>
             <a href="./Register.aspx" class="a1"  runat="server">注册</a>
         </div>
-        <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand1">
+        <asp:Repeater ID="Repeater1" runat="server" OnItemCommand="Repeater1_ItemCommand1" ><%--OnItemDataBound="Repeater1_OnItemDataBound"--%>
             <HeaderTemplate>
                 <table class="table">
                     <tr>
@@ -50,10 +50,7 @@
                     <td>
                         <asp:LinkButton ID="LinkButton3" CommandName="del" runat="server">删除</asp:LinkButton>
                         <asp:LinkButton ID="LinkButton4" CommandName="modify" runat="server">更改</asp:LinkButton>
-                    </td
-                   
-                    
-
+                    </td>
                 </tr>
             </ItemTemplate>
             <FooterTemplate>

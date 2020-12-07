@@ -12,9 +12,10 @@ namespace WebApplication7.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             FillRep();
+
             try
             {
-                Session["AdminUser"].ToString();
+                Response.Write("<a href='Home.aspx?ID=" + Session["AdminUser"].ToString() + "'>个人主页</a>");
                 d1.Visible = false;
                 //Response.Write();
             }
@@ -30,14 +31,12 @@ namespace WebApplication7.Web
         {
             StringBuilder strSql = new StringBuilder();
             strSql.Append("IsDelete = 0");
-            /*
             if (Session["AdminUser"] != null)
             {
                 String admin = Session["AdminUser"].ToString();
-                strSql.Append("and CreateUser = '" + admin.ToString() + "'");
+
             }
-            */
-           
+
             DataSet ds = new V_Logs_User_BLL().GetList(strSql.ToString());
             Repeater1.DataSource = ds;
             Repeater1.DataBind();
@@ -57,6 +56,20 @@ namespace WebApplication7.Web
                 case "modify":
                     ADDInfoInfoLog(LogID);
                     break;
+            }
+        }
+
+        protected void Repeater1_OnItemDataBound(object source, RepeaterCommandEventArgs e)
+        {
+            try
+            {
+                Session["AdminUser"].ToString();
+
+            }
+            catch (Exception)
+            {
+                /*var l1 = ((LinkButton)e.Item.FindControl("LinkButton1"));
+                l1.Visible = false;*/
             }
         }
 

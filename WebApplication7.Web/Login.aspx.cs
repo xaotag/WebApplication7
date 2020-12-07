@@ -31,7 +31,7 @@ namespace WebApplication7.Web
             if (new Info_User_BLL().Exists(userNum, pwd))
             {
                 Session["AdminUser"] = new Info_User_BLL().GetModel(userNum, pwd).UserlD.ToString();
-                Response.Redirect("InfoList.aspx");
+                Response.Redirect("Home.aspx");
             }
         }
     }
