@@ -614,19 +614,33 @@ namespace WebApplication7.DBUtility
         /// <returns>影响的记录数</returns>
         public static int ExecuteSql(string SQLString, params SqlParameter[] cmdParms)
         {
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
+                    SqlTransaction tranas = connection.BeginTransaction();
                     try
                     {
                         PrepareCommand(cmd, connection, null, SQLString, cmdParms);
+                        cmd.Transaction = tranas;
                         int rows = cmd.ExecuteNonQuery();
-                        cmd.Parameters.Clear();
+                        if (rows > 0)
+                        {
+                            tranas.Commit();
+                            cmd.Parameters.Clear();
+                            return rows;
+                        }
+                        else
+                        {
+                            tranas.Rollback();
+                        }
+
                         return rows;
                     }
                     catch (System.Data.SqlClient.SqlException e)
                     {
+                        tranas.Rollback();
                         throw e;
                     }
                 }
@@ -1171,7 +1185,7 @@ namespace WebApplication7.DBUtility
                 return dt;
             }
         }
-        
+
         public static DataTable StoredProcedure_OrderDetails(string storedProcName, List<SqlParameter> all, out int ReturnValue)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -1351,7 +1365,7 @@ namespace WebApplication7.DBUtility
                 }
                 return str;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 return new string[0];
             }

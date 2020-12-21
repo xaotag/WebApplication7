@@ -7,14 +7,17 @@ using System.Data;
 using System.Data.SqlClient;
 using WebApplication7.Model;
 using WebApplication7.DBUtility;
+using SqlTransaction;
 
 namespace WebApplication7.DAL
 {
+    
 	/// <summary>
 	/// 数据访问类:Info_User_DAL
 	/// </summary>
 	public partial class Info_User_DAL
 	{
+        SqlTransaction trans = null;
 		public Info_User_DAL()
 		{ }
 		#region  BasicMethod
@@ -56,8 +59,8 @@ namespace WebApplication7.DAL
 		/// 增加一条数据
 		/// </summary>
 		public bool Add(Info_User_Model model)
-		{
-			StringBuilder strSql = new StringBuilder();
+        {
+            StringBuilder strSql = new StringBuilder();
 			strSql.Append("insert into Info_User(");
 			strSql.Append("UserlD,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark)");
 			strSql.Append(" values (");
